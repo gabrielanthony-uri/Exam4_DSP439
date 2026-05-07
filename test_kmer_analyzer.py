@@ -74,3 +74,18 @@ def test_count_kmers_with_context_next_chars_count():
   k = 2
   result = count_kmers_with_context(sequence, k)
   assert result['AT']['next_chars']['G'] == 1
+
+def test_write_results_to_file_basic():
+  kmer_data = {'AT': {'next_chars': {'G': 1}}}
+  write_results_to_file(kmer_data, 'output.txt')
+  with open('output.txt') as f:
+    results = f.read()
+  assert 'AT G:1' in results
+  
+def test_write_results_to_file_sorted():
+  kmer_data = {'TG': {'next_chars': {'T': 1}}, 'AT': {'next_chars': {'G': 1}}}
+  write_results_to_file(kmer_data, 'output.txt')
+  with open('output.txt') as f:
+    lines = f.read().split('\n')
+  assert lines == ['AT G:1', 'TG T:1']
+  
