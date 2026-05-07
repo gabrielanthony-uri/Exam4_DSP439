@@ -62,3 +62,15 @@ def test_update_kmer_next_char_count():
   next_char = 'G'
   update_kmer_count(kmer_data, kmer, next_char)
   assert kmer_data[kmer]['next_chars'][next_char] == 1
+
+def test_count_kmers_with_context_kmer_count():
+  sequence = 'ATG'
+  k = 2
+  result = count_kmers_with_context(sequence, k)
+  assert result['AT']['count'] == 1
+  
+def test_count_kmers_with_context_next_chars_count():
+  sequence = 'ATG'
+  k = 2
+  result = count_kmers_with_context(sequence, k)
+  assert result['AT']['next_chars']['G'] == 1
