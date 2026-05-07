@@ -49,3 +49,16 @@ def test_validate_sequence_lowercase():
   result = validate_sequence(sequence, k)
   assert result is False
 
+def test_update_kmer_kmer_count():
+  kmer_data = {}
+  kmer = 'AT'
+  next_char = 'G'
+  update_kmer_count(kmer_data, kmer, next_char)
+  assert kmer_data[kmer]['count'] == 1
+  
+def test_update_kmer_next_char_count():
+  kmer_data = {}
+  kmer = 'AT'
+  next_char = 'G'
+  update_kmer_count(kmer_data, kmer, next_char)
+  assert kmer_data[kmer]['next_chars'][next_char] == 1
